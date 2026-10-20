@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Herman Ilchenko — DevOps and platform engineer in Chicago. Four years on AWS and Kubernetes: clusters, delivery pipelines and the tooling teams ship through.">
+<meta name="theme-color" content="#0B0E13">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Herman Ilchenko — DevOps &amp; Platform Engineer">
+<meta property="og:description" content="Four years building the path other engineers ship through. AWS, Kubernetes, CI/CD, and agents inside the pipeline.">
+<meta property="og:url" content="https://herman-site-resume.click/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230B0E13'/><text x='16' y='22' font-family='monospace' font-size='16' fill='%23E0A75C' text-anchor='middle'>H</text></svg>">
+<title>Herman Ilchenko</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  :root {
+    --bg:      #0B0E13;
+    --surface: #131922;
+    --sunk:    #1A222D;
+    --ink:     #E4E9F0;
+    --muted:   #8593A4;
+    --rule:    #222C39;
+    --accent:  #E0A75C;
+    --accent-dim: rgba(224,167,92,0.12);
+    --term:    #7FD4A8;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    --pad: clamp(1.15rem, 5vw, 2.5rem);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    background: var(--bg); color: var(--ink); font-family: var(--sans);
+    font-size: 16.5px; line-height: 1.65; margin: 0; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 66rem; margin: 0 auto; padding: 0 var(--pad); }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+  /* nav */
+  nav.top { position: sticky; top: 0; z-index: 20; background: rgba(11,14,19,0.85);
+            backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); }
+  .nav-in { display: flex; align-items: center; justify-content: space-between;
+            gap: 1rem; padding: 0.9rem 0; flex-wrap: wrap; }
+  .wordmark { font-family: var(--mono); font-size: 0.92rem; color: var(--ink); }
+  .wordmark b { color: var(--accent); font-weight: 500; }
+  .nav-links { display: flex; gap: 1.35rem; font-size: 0.87rem; flex-wrap: wrap; }
+  .nav-links a { color: var(--muted); text-decoration: none; transition: color .15s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* hero */
+  .hero { padding: clamp(3.5rem, 11vh, 6.5rem) 0 clamp(2.5rem, 6vh, 4rem); }
+  .greet { font-family: var(--mono); font-size: 0.9rem; color: var(--accent); margin: 0 0 0.7rem; }
+  .hero h1 { font-size: clamp(2.4rem, 7vw, 4rem); font-weight: 800; letter-spacing: -0.035em;
+             line-height: 1.02; margin: 0 0 0.5rem; }
+  .hero .role { font-size: clamp(1.05rem, 2.6vw, 1.35rem); font-weight: 600;
+                color: var(--muted); margin: 0 0 1.3rem; }
+  .hero .pitch { max-width: 56ch; color: var(--muted); margin: 0; }
+  .cta { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 2rem; }
+  .btn { font-size: 0.9rem; font-weight: 500; padding: 0.65rem 1.2rem; border-radius: 7px;
+         text-decoration: none; border: 1px solid var(--accent); display: inline-block; transition: .15s; }
+  .btn-solid { background: var(--accent); color: #0B0E13; }
+  .btn-solid:hover { filter: brightness(1.08); }
+  .btn-ghost { color: var(--accent); }
+  .btn-ghost:hover { background: var(--accent-dim); }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+           gap: 1.25rem; margin-top: 3.2rem; padding-top: 2.2rem; border-top: 1px solid var(--rule); }
+  .stat b { display: block; font-size: clamp(1.9rem, 4.5vw, 2.5rem); font-weight: 800;
+            color: var(--accent); letter-spacing: -0.03em; line-height: 1;
+            font-variant-numeric: tabular-nums; }
+  .stat span { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
+               text-transform: uppercase; color: var(--muted); display: block; margin-top: 0.45rem; }
+
+  .scroll-hint { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.24em;
+                 color: var(--muted); text-align: center; padding: 2.5rem 0 0; }
+
+  /* scroll reveal — enabled by script, so no-JS shows everything */
+  .js-reveal .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .6s ease, transform .6s cubic-bezier(.22,.68,.28,1);
+    will-change: opacity, transform;
+  }
+  .js-reveal .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .js-reveal .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* sections */
+  section { padding: clamp(3rem, 8vh, 5rem) 0; border-top: 1px solid var(--rule); }
+  .sec-head { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 1.6rem; flex-wrap: wrap; }
+  .num { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+         color: var(--accent); font-weight: 500; border: 1px solid rgba(224,167,92,0.3);
+         border-radius: 4px; padding: 0.2rem 0.5rem; }
+  h2 { font-size: clamp(1.5rem, 3.6vw, 2rem); font-weight: 700; letter-spacing: -0.025em; margin: 0; }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 0; }
+  p { margin: 0 0 1rem; max-width: 64ch; }
+  p:last-child { margin-bottom: 0; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.2rem; }
+  .tag { font-family: var(--mono); font-size: 0.76rem; background: var(--sunk);
+         border: 1px solid var(--rule); border-radius: 5px; padding: 0.26rem 0.6rem; color: var(--muted); }
+  .tag.hot { color: var(--accent); border-color: rgba(224,167,92,0.35); background: var(--accent-dim); }
+
+  /* terminal */
+  .term { background: var(--surface); border: 1px solid var(--rule); border-radius: 9px;
+          overflow: hidden; margin-top: 1.8rem; }
+  .term-bar { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.9rem;
+              background: var(--sunk); border-bottom: 1px solid var(--rule);
+              font-family: var(--mono); font-size: 0.75rem; color: var(--muted); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .term-body { padding: 1rem 1.1rem; font-family: var(--mono); font-size: 0.82rem;
+               line-height: 1.85; overflow-x: auto; }
+  .term-body .pr { color: var(--term); }
+  .term-body .out { color: var(--muted); }
+  .cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent);
+            vertical-align: text-bottom; animation: blink 1.1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0 } }
+  @media (prefers-reduced-motion: reduce) { .cursor { animation: none } }
+
+  /* skills */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr));
+                gap: 1.1rem; margin-top: 1.6rem; }
+  .skill-card { background: var(--surface); border: 1px solid var(--rule);
+                border-radius: 9px; padding: 1.15rem; }
+  .skill-card h3 { font-size: 0.9rem; margin-bottom: 0.85rem; }
+  .skill-card .tags { margin-top: 0; }
+
+  /* experience */
+  .job { background: var(--surface); border: 1px solid var(--rule); border-radius: 9px;
+         padding: 1.4rem; margin-bottom: 1.1rem; }
+  .job-top { display: flex; justify-content: space-between; gap: 0.75rem;
+             flex-wrap: wrap; align-items: center; margin-bottom: 0.15rem; }
+  .job-top .co { font-weight: 700; font-size: 1.05rem; }
+  .badge { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.13em;
+           text-transform: uppercase; color: var(--accent); background: var(--accent-dim);
+           border: 1px solid rgba(224,167,92,0.35); border-radius: 4px; padding: 0.16rem 0.45rem; }
+  .meta { font-family: var(--mono); font-size: 0.76rem; color: var(--muted); margin-bottom: 0.9rem; }
+  .job h3 { color: var(--accent); font-size: 0.95rem; margin-bottom: 0.7rem; }
+  ul { margin: 0; padding-left: 1.15rem; max-width: 66ch; }
+  li { margin-bottom: 0.5rem; color: var(--ink); }
+  li::marker { color: var(--accent); }
+
+  /* work */
+  .work { background: var(--surface); border: 1px solid var(--rule); border-radius: 9px;
+          padding: 1.4rem; margin-bottom: 1.1rem; }
+  .kind { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em;
+          text-transform: uppercase; color: var(--accent); background: var(--accent-dim);
+          border-radius: 4px; padding: 0.22rem 0.5rem; display: inline-block; margin-bottom: 0.85rem; }
+  .work h3 { font-size: 1.1rem; margin-bottom: 0.65rem; }
+  .work p { font-size: 0.95rem; }
+  .pull { border-left: 2px solid var(--accent); padding-left: 0.95rem; margin-top: 1rem; }
+  .pull b { color: var(--accent); font-size: 1.3rem; display: block; line-height: 1.3;
+            font-variant-numeric: tabular-nums; }
+  .scroller { overflow-x: auto; margin: 1.1rem 0; }
+  table { border-collapse: collapse; width: 100%; min-width: 31rem; font-size: 0.89rem; }
+  th, td { text-align: left; padding: 0.5rem 1rem 0.5rem 0;
+           border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead th { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.09em;
+             text-transform: uppercase; color: var(--accent); }
+  tbody th { font-weight: 500; color: var(--muted); width: 8.5rem; }
+
+  /* certs */
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 0.8rem; }
+  .cert { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px;
+          padding: 0.9rem 1rem; display: flex; justify-content: space-between; gap: 0.75rem; align-items: center; }
+  .cert em { font-style: normal; font-size: 0.93rem; }
+  .cert span { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+
+  footer { padding: clamp(3rem, 8vh, 5rem) 0; border-top: 1px solid var(--rule); }
+  .contact-line { display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem;
+                  font-family: var(--mono); font-size: 0.85rem; margin-top: 1.3rem; }
+  .contact-line span { color: var(--muted); }
+  .contact-line a, .contact-line span { display: inline-flex; align-items: center; gap: 0.45rem; }
+  .contact-line svg { width: 15px; height: 15px; flex: none; opacity: 0.85; }
+  .colophon { color: var(--muted); font-size: 0.78rem; font-family: var(--mono);
+              margin-top: 2.5rem; padding-top: 1.3rem; border-top: 1px solid var(--rule); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap nav-in">
+    <span class="wordmark">herman<b>/</b>ilchenko</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Stack</a>
+      <a href="#experience">Experience</a>
+      <a href="#certs">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="greet">DevOps &amp; platform engineer · Chicago, IL</p>
+    <h1>Herman Ilchenko</h1>
+    <p class="role">Four years building the path other engineers ship through.</p>
+    <p class="pitch">
+      I build the delivery platforms other engineers ship through — clusters, pipelines and the
+      tooling around them — and I can tell you what each choice costs.
+    </p>
+    <div class="cta">
+      <a class="btn btn-solid" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="#experience">Experience</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b data-count="10">0</b><span>EKS clusters owned</span></div>
+      <div class="stat"><b data-count="60" data-suffix="+">0</b><span>Services in production</span></div>
+      <div class="stat"><b data-count="40">0</b><span>Engineers shipping on it</span></div>
+      <div class="stat"><b data-count="4">0</b><span>Years in production</span></div>
+    </div>
+    <p class="scroll-hint">SCROLL</p>
+  </header>
+
+  <section id="about">
+    <div class="sec-head"><span class="num">who</span><h2>About me</h2></div>
+    <p>
+      DevOps engineer in Chicago. I own the Kubernetes platform 40 product engineers ship on —
+      ten EKS clusters across three environments, 60+ services — along with the delivery path
+      around it: pipelines, GitOps releases, alerting, and the agent that takes the first pass
+      on every pull request.
+    </p>
+    <p>
+      Before that, two years at a consumer-lending fintech bringing an AWS estate under
+      Terraform and moving its EC2 fleet onto immutable images. That's where most of my
+      opinions about delivery come from: what a platform gives you for free stays invisible
+      until you ship something without it.
+    </p>
+    <div class="tags">
+      <span class="tag hot">Kubernetes</span><span class="tag hot">Terraform</span>
+      <span class="tag hot">GitOps</span><span class="tag hot">Observability</span>
+      <span class="tag hot">Immutable delivery</span><span class="tag hot">Agentic AI</span>
+    </div>
+
+    <div class="term">
+      <div class="term-bar">
+        <span class="dot" style="background:#E06C5C"></span>
+        <span class="dot" style="background:#E0A75C"></span>
+        <span class="dot" style="background:#7FD4A8"></span>
+        <span style="margin-left:0.5rem">herman@infra — ~/about</span>
+      </div>
+      <div class="term-body">
+        <div><span class="pr">$</span> platform describe --scope</div>
+        <div class="out">10 EKS clusters · 3 environments · 60+ services · 40 engineers</div>
+        <div><span class="pr">$</span> release rollback --how</div>
+        <div class="out">sync the previous chart revision. no SSH, no rebuild.</div>
+        <div><span class="pr">$</span> alerts diff --before --after</div>
+        <div class="out">~35 pages/week &rarr; under 10. the rest became dashboards.</div>
+        <div><span class="pr">$</span> agents where</div>
+        <div class="out">in the pipeline — first pass on every pull request</div>
+        <div><span class="pr">$</span> <span class="cursor"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head"><span class="num">what</span><h2>Skills &amp; tools</h2></div>
+    <div class="term">
+      <div class="term-bar">
+        <span class="dot" style="background:#E06C5C"></span>
+        <span class="dot" style="background:#E0A75C"></span>
+        <span class="dot" style="background:#7FD4A8"></span>
+        <span style="margin-left:0.5rem">herman@infra — ~/skills</span>
+      </div>
+      <div class="term-body">
+        <div><span class="pr">$</span> stack --by-layer</div>
+      </div>
+    </div>
+
+    <div class="skill-grid">
+      <div class="skill-card"><h3>☁️ Cloud &amp; Infrastructure</h3><div class="tags">
+        <span class="tag">AWS</span><span class="tag">EC2</span><span class="tag">VPC</span><span class="tag">IAM</span><span class="tag">S3</span><span class="tag">RDS</span><span class="tag">Route53</span><span class="tag">ACM</span><span class="tag">Secrets Manager</span><span class="tag">ASG/ALB</span><span class="tag">Linux</span></div></div>
+      <div class="skill-card"><h3>📦 Containers &amp; Orchestration</h3><div class="tags">
+        <span class="tag">Kubernetes</span><span class="tag">EKS</span><span class="tag">Docker</span><span class="tag">Helm</span><span class="tag">ArgoCD</span></div></div>
+      <div class="skill-card"><h3>🏗️ IaC &amp; Image Building</h3><div class="tags">
+        <span class="tag">Terraform</span><span class="tag">CloudFormation</span><span class="tag">Packer</span></div></div>
+      <div class="skill-card"><h3>🔄 CI/CD &amp; GitOps</h3><div class="tags">
+        <span class="tag">GitHub Actions</span><span class="tag">GitLab CI</span><span class="tag">Jenkins</span><span class="tag">ArgoCD</span></div></div>
+      <div class="skill-card"><h3>📊 Observability</h3><div class="tags">
+        <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Alertmanager</span><span class="tag">CloudWatch</span><span class="tag">Datadog</span></div></div>
+      <div class="skill-card"><h3>🔒 Security &amp; Access</h3><div class="tags">
+        <span class="tag">IAM / OIDC CI auth</span><span class="tag">Kubernetes RBAC</span><span class="tag">ServiceAccounts</span><span class="tag">Secret scanning</span></div></div>
+      <div class="skill-card"><h3>🤖 AI &amp; Agentic</h3><div class="tags">
+        <span class="tag">Claude Code</span><span class="tag">Agent skills</span><span class="tag">AI code review</span></div></div>
+      <div class="skill-card"><h3>⌨️ Scripting &amp; App Stack</h3><div class="tags">
+        <span class="tag">Bash</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">NGINX</span><span class="tag">systemd</span><span class="tag">MySQL / RDS</span></div></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head"><span class="num">where</span><h2>Experience</h2></div>
+
+    <div class="job">
+      <div class="job-top"><span class="co">Relativity</span><span class="badge">Current</span></div>
+      <p class="meta">Aug 2024 — Present · Chicago, IL · E-discovery SaaS for legal teams</p>
+      <h3>DevOps Engineer</h3>
+      <ul>
+        <li>Owned the Kubernetes platform that 40 product engineers shipped on: 10 EKS clusters across 3 environments, 60+ services in production.</li>
+        <li>Moved routing onto Gateway API — teams attach their own HTTPRoutes and get DNS and TLS without asking, cutting onboarding from three days to under an hour across 18 services and 4 teams.</li>
+        <li>Tuned alert routing and thresholds across the platform, cutting pages ~70% (from ~35 a week to under 10) without losing real incident detection.</li>
+        <li>Migrated 15+ services from Jenkins to GitHub Actions and ArgoCD-delivered Helm charts, retiring the Jenkins controller — a rollback is now a sync to the previous chart version.</li>
+        <li>Built an AI PR-review agent (Claude Code GitHub Action) across 30 repos — validates each PR against its Jira ticket requirements and requests changes before human review.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">EKS</span><span class="tag">Gateway API</span><span class="tag">ArgoCD</span><span class="tag">Helm</span><span class="tag">GitHub Actions</span><span class="tag">Claude Code</span></div>
+    </div>
+
+    <div class="job">
+      <div class="job-top"><span class="co">Enova International</span></div>
+      <p class="meta">Jun 2022 — Jul 2024 · Chicago, IL · NYSE-listed consumer-lending fintech</p>
+      <h3>Cloud Engineer</h3>
+      <ul>
+        <li>Brought loan servicing and payments under Terraform across 12 accounts and 3 environments, so every infrastructure change went through a reviewed pull request instead of a console click.</li>
+        <li>Replaced ~120 hand-built hosts with immutable Packer AMIs and a GitLab CI bake-apply-health-check pipeline — SSH access to production retired, every deploy traceable to a single image ID.</li>
+        <li>Moved private subnets to IPv6-primary behind egress-only gateways, taking most egress off metered NAT and leaving NAT64 only for AWS endpoints without IPv6 — ~$30K/yr off the network bill.</li>
+        <li>Replaced host-level CloudWatch alarms with service-level Datadog monitors — failures in payments and loan servicing paged in minutes instead of arriving as customer complaints.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Terraform</span><span class="tag">Packer</span><span class="tag">GitLab CI</span><span class="tag">EC2 / ASG</span><span class="tag">IPv6</span><span class="tag">Secrets Manager</span><span class="tag">Datadog</span></div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="sec-head"><span class="num">proof</span><h2>Certifications</h2></div>
+    <div class="cert-grid">
+      <div class="cert"><em>AWS Solutions Architect — Associate</em><span>to 2029</span></div>
+      <div class="cert"><em>Certified Kubernetes Administrator</em><span>to 2028</span></div>
+      <div class="cert"><em>Certified Kubernetes Application Developer</em><span>to 2028</span></div>
+      <div class="cert"><em>HashiCorp Terraform Associate</em><span>to 2028</span></div>
+    </div>
+    <p style="margin-top:1.2rem"><a href="https://www.credly.com/users/ilchenko-herman/badges">Verify all badges on Credly →</a></p>
+  </section>
+
+  <footer id="contact">
+    <div class="sec-head"><span class="num">next</span><h2>Open to platform and DevOps roles</h2></div>
+    <p>
+      Currently on the Kubernetes platform at a legal e-discovery SaaS in Chicago. If you're
+      building the path your engineers ship through, I'd like to hear about it.
+    </p>
+    <div class="contact-line">
+      <a href="mailto:ilchenko.gera@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 6.5 9 6 9-6"/></svg>ilchenko.gera@gmail.com</a>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3 5.2 2 2 0 0 1 5 3h1.5Z"/></svg>630-362-9744</span>
+      <a href="https://linkedin.com/in/herman-ilchenko"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.65h.05c.53-.95 1.83-1.95 3.77-1.95C21.6 8.7 22 11.1 22 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21h-4V9Z"/></svg>linkedin.com/in/herman-ilchenko</a>
+    </div>
+    <p class="colophon">Chicago, IL · built and deployed by hand</p>
+  </footer>
+
+</div>
+
+<script>
+/* Scroll reveal. The hiding rule lives behind .js-reveal, so if this script
+   never runs the page renders fully visible. */
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var targets = document.querySelectorAll(
+    '.hero .greet, .hero h1, .hero .role, .hero .pitch, .cta, .stat, .scroll-hint,' +
+    '.sec-head, section > p, .term, .skill-card, .job, .cert, #certs > p,' +
+    '.contact-line, .colophon'
+  );
+  if (!targets.length) return;
+
+  document.documentElement.classList.add('js-reveal');
+  Array.prototype.forEach.call(targets, function (el) { el.classList.add('reveal'); });
+
+  var io = new IntersectionObserver(function (entries) {
+    var shown = 0;
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.style.transitionDelay = Math.min(shown * 70, 280) + 'ms';
+      e.target.classList.add('in');
+      shown++;
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+
+  Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+})();
+
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nums = Array.prototype.slice.call(document.querySelectorAll('[data-count]'));
+
+  function paint(el, v) {
+    el.textContent = v + (el.dataset.suffix || '');
+  }
+  if (reduce) { nums.forEach(function (el) { paint(el, +el.dataset.count); }); return; }
+
+  function run(el) {
+    var target = +el.dataset.count, start = null, dur = 1100;
+    function step(t) {
+      if (!start) start = t;
+      var p = Math.min((t - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      paint(el, Math.round(target * eased));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if (!('IntersectionObserver' in window)) { nums.forEach(run); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.4 });
+  nums.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
